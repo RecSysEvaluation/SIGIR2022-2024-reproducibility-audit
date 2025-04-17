@@ -6,7 +6,6 @@
 <body>
 
 
-<h2>Graph neural networks vs. Sequential neural networks</h2>
 
 <p align="center">
   <img src="chat.webp" width="500", title="Credit goes to ChatGPT">
