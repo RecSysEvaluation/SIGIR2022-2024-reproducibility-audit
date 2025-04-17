@@ -8,7 +8,7 @@
 
 
 <p align="center">
-  <img src="chat.webp" width="500", title="Credit goes to ChatGPT">
+  <img src="chat.webp" width="300", title="Credit goes to ChatGPT">
 </p>
 
 
