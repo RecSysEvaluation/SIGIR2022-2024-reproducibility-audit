@@ -35,7 +35,7 @@
 						
 							<nav id="nav" style="font-weight: bold;">
 								<ul>
-								  <li><a href="index.html">Home</a></li>
+								  <!-- <li><a href="index.html">Home</a></li> -->
 								  <li><a href="#" data-load="paper_analysis.html">Considered papers</a></li>
 								  <li><a href="#" data-load="analysis_of_consideredpapers.html">Analysis of considered papers</a></li>
 								</ul>
@@ -44,7 +44,7 @@
 			<!-- Banner -->
 				<div class="box">
 					
-						<p align="justify">
+						<!-- <p align="justify">
 
 							Issues with reproducibility have been identified as a major factor hampering progress in recommender systems research. 
 							In response, researchers increasingly share the code of their models. However, the provision of only the code of the proposed 
@@ -60,8 +60,8 @@
 							it is also unclear if the claimed improvements over the state-of-the-art were actually achieved. Overall, we conclude that the 
 							research community has not reached the required level of reproducibility yet. We therefore call for more rigorous reproducibility standards to ensure progress in this field.
 						</p>
-                            
-
+					-->    
+                         
 				</div>
 
 				<div class="box" id="table-placeholder"></div>
@@ -69,22 +69,38 @@
 				<script>
 					document.addEventListener("DOMContentLoaded", () => {
 						document.querySelectorAll('a[data-load]').forEach(link => {
-						link.addEventListener('click', function(event) {
-							event.preventDefault(); // Stop default navigation
-							const file = this.getAttribute('data-load');
+							link.addEventListener('click', function(event) {
+								event.preventDefault(); // Stop default navigation
+								const file = this.getAttribute('data-load');
+								fetch(file)
+								.then(response => response.text())
+								.then(data => {
+									document.getElementById("table-placeholder").innerHTML = data;
+								})
+								.catch(error => {
+									console.error("Error loading content:", error);
+									document.getElementById("table-placeholder").innerHTML = "<p>Error loading content.</p>";
+								});
+							});
+						});
+					
+						// Automatically load the default content
+						const defaultLink = document.querySelector('a[data-load="paper_analysis.html"]');
+						if (defaultLink) {
+							const file = defaultLink.getAttribute('data-load');
 							fetch(file)
 							.then(response => response.text())
 							.then(data => {
 								document.getElementById("table-placeholder").innerHTML = data;
 							})
 							.catch(error => {
-								console.error("Error loading content:", error);
-								document.getElementById("table-placeholder").innerHTML = "<p>Error loading content.</p>";
+								console.error("Error loading default content:", error);
+								document.getElementById("table-placeholder").innerHTML = "<p>Error loading default content.</p>";
 							});
-						});
-						});
+						}
 					});
-				</script>
+					</script>
+					
 
         <div class="box">
 		
